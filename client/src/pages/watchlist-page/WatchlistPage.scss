@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.watchlist-page-container {
+  box-sizing: border-box;
+  background-color: #161b21;
+  height: 100vh;
+  width: 95%;
+  display: flex;
+}
+
+.table-container {
+  box-sizing: border-box;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
+}
+
+.your-watchlist-table {
+  width: 860px;
+  background-color: #1d232c;
+  margin-right: 40px;
+  margin-left: -120px;
+}
+
+.top-winners {
+  width: 860px;
+  background-color: #1d232c;
+}
+
+.early-warning-indicators {
+  margin-top: 1%;
+  margin-right: 2%;
+}
+
+.early-warning-indicator-title {
+  margin-left: -150px;
+}
