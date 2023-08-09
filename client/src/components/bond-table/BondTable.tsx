@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import { DataGridPro } from '@mui/x-data-grid-pro';
 import { DataGrid} from '@mui/x-data-grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -84,8 +84,6 @@ const moodysRatingToNumber = {
 function compareRatings(currentRating, predictedRating) {
   // Add your logic here to compare the ratings
   // This is an example. Replace this with actual logic
-  console.log(currentRating)
-  console.log(moodysRatingToNumber[predictedRating], moodysRatingToNumber[currentRating])
   const diff = moodysRatingToNumber[predictedRating] - moodysRatingToNumber[currentRating]
   if (diff > 1) {
     return <KeyboardDoubleArrowUpIcon style={{color: 'green'}} />;
@@ -102,13 +100,16 @@ function compareRatings(currentRating, predictedRating) {
 
 export default function BondTable({ data, onRowSelected }) {
   const classes = useStyles();
-  const [selectedRow, setSelectedRow] = React.useState(null);
+  const [selectedRow, setSelectedRow] = useState(null)
   const handleRowClick = (param) => {
     setSelectedRow(param.id);
   };
 
+
+
+
     // Create columns based on the keys in the data
-  const columns = Object.keys(data[0]).map(key => {
+  const columns = data[0] ?  Object.keys(data[0]).map(key => {
     if (key === 'crMigPred') {
       return {
         field: key,
@@ -120,22 +121,23 @@ export default function BondTable({ data, onRowSelected }) {
           </div>
         ),
       };
-    }
+    } 
     
     return {
       field: key,
       headerName: key.charAt(0).toUpperCase() + key.slice(1),
     };
-  });
+  }) : [];
 
   return (
     <ThemeProvider theme={darkTheme}>
       <div style={{ height: '100%', width: '100%' }}>
         <DataGrid
-          rows={data}
+          rows={data.map((row, index) => ({ id: index, ...row }))}
+          // rows={data}
           columns={columns}
           // getRowId={(row) => row.BondID} // Here I'm using the `name` property as the id. Replace `name` with the appropriate property in your data.
-          getRowId={(row) => row.id} // Here I'm using the `name` property as the id. Replace `name` with the appropriate property in your data.
+          // getRowId={(row) => row.BondID} // Here I'm using the `name` property as the id. Replace `name` with the appropriate property in your data.
           onRowSelectionModelChange={onRowSelected}
           onRowClick={handleRowClick}
           rowSelectionModel={[]}
@@ -147,6 +149,8 @@ export default function BondTable({ data, onRowSelected }) {
             borderRadius: '16px',
             border: "0px"
           }}
+          hideFooterPagination
+          hideFooter
         />
       </div>
     </ThemeProvider>

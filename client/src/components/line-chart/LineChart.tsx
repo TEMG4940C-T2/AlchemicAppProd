@@ -77,7 +77,7 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
   };
   
   
-  export default function MyLineChart() {
+  export default function MyLineChart(graphData) {
     return (
         <ResponsiveContainer width="90%" height="85%">
             <LineChart data={data}>

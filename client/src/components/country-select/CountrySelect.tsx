@@ -3,54 +3,44 @@ import Select from 'react-select';
 
 // List of OECD countries for dropdown
 const countries = [
-  'Australia',
-  'Austria',
-  'Belgium',
-  'Canada',
-  'Chile',
-  'Colombia',
-  'Czech Republic',
-  'Denmark',
-  'Estonia',
-  'Finland',
-  'France',
-  'Germany',
-  'Greece',
-  'Hungary',
-  'Iceland',
-  'Ireland',
-  'Israel',
-  'Italy',
-  'Japan',
-  'Korea',
-  'Latvia',
-  'Lithuania',
-  'Luxembourg',
-  'Mexico',
-  'Netherlands',
-  'New Zealand',
-  'Norway',
-  'Poland',
-  'Portugal',
-  'Slovak Republic',
-  'Slovenia',
-  'Spain',
-  'Sweden',
-  'Switzerland',
-  'Turkey',
-  'United Kingdom',
-  'United States',
-].map(country => ({ label: country, value: country }));
-
+  { name: 'All', code: 'All' },
+  { name: 'Australia', code: 'AUS' },
+  { name: 'Austria', code: 'AUT' },
+  { name: 'Belgium', code: 'BEL' },
+  { name: 'Canada', code: 'CAN' },
+  { name: 'Chile', code: 'CHL' },
+  { name: 'Colombia', code: 'COL' },
+  { name: 'Denmark', code: 'DNK' },
+  { name: 'Finland', code: 'FIN' },
+  { name: 'France', code: 'FRA' },
+  { name: 'Germany', code: 'DEU' },
+  { name: 'Hungary', code: 'HUN' },
+  { name: 'Iceland', code: 'ISL' },
+  { name: 'Ireland', code: 'IRL' },
+  { name: 'Italy', code: 'ITA' },
+  { name: 'Japan', code: 'JPN' },
+  { name: 'Korea', code: 'KOR' },
+  { name: 'Luxembourg', code: 'LUX' },
+  { name: 'Mexico', code: 'MEX' },
+  { name: 'Netherlands', code: 'NLD' },
+  { name: 'Norway', code: 'NOR' },
+  { name: 'Poland', code: 'POL' },
+  { name: 'Portugal', code: 'PRT' },
+  { name: 'Slovak Republic', code: 'SVK' },
+  { name: 'Spain', code: 'ESP' },
+  { name: 'Sweden', code: 'SWE' },
+  { name: 'Switzerland', code: 'CHE' },
+  { name: 'Turkey', code: 'TUR' },
+  { name: 'United Kingdom', code: 'GBR' },
+  { name: 'United States', code: 'USA' },
+].map(country => ({ label: country.name, value: country.code }));
 
 function CountrySelect({ onCountryChange }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleChange = option => {
     setSelectedOption(option);
-    onCountryChange(option); // pass to parent
-    // Do something with the selected option
-    console.log(`Option selected:`, option);
+    onCountryChange(option.value); // pass to parent
   };
 
   const darkTheme = theme => ({

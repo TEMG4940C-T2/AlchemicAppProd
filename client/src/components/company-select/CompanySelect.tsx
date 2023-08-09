@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 
-// List of ticker symbols for dropdown
-const tickers = [
-  'AAPL', //Apple Inc.
-  'GOOGL', //Alphabet Inc.
-  'MSFT', //Microsoft Corporation
-  'AMZN', //Amazon.com Inc.
-  'FB', //Facebook Inc.
-  // add as many ticker symbols as you need
-].map(ticker => ({ label: ticker, value: ticker }));
 
-function CompanySelect({ onCompanyChange }) {
+function CompanySelect({ onCompanyChange, companyList }) {
   const [selectedOption, setSelectedOption] = useState(null);
+
+  const tickers = [{label:"All", value:"All"}].concat(companyList.map(company => ({ label: company.commonName, value: company.ticker })));
 
   const handleChange = option => {
     setSelectedOption(option);
-    onCompanyChange(option); // pass to parent
+    onCompanyChange(option.value); // pass to parent
     // Do something with the selected option
     console.log(`Option selected:`, option);
   };

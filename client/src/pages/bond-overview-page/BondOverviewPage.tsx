@@ -1,44 +1,110 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './BondOverviewPage.scss'
 import CountrySelect from '../../components/country-select/CountrySelect'
 import CompanySelect from '../../components/company-select/CompanySelect'
-import BondTable from '../../components/bond-table/BondTable';
+import BondTableOverview from '../../components/bond-table-overview/BondTableOverview';
 import Button from '../../components/button/Button';
 import MyLineChart from '../../components/line-chart/LineChart';
-import * as bonds_data from './bonds_data.json';
 
-type DataRow = {
-    id: number;
-    name: string;
-    ticker: string;
-    cpn: string;
-    maturity: string;
-    spread: string;
-    ytm: string;
-    moodysRating: string;
-    crMigPred: string;
-    crMigCL: string;
-    crSpreadPred: string;
-    crSpreadSL: string;
-  };
+  export const BondOverviewPage = () => {
+    const [selectedCompany, setSelectedCompany] = useState<string|null>("All");  
+    const [selectedRow, setSelectedRow] = useState<any | null>(null);
+  
+    
+    const [rawData, setRawData] = useState<any>([]);
+    useEffect(() => {
+      fetch('data/bonds_data_frontend.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch');
+        }
+        return response.json();
+      })
+      .then(data => setRawData(data))
+      .catch(error => {
+          console.error('Error:', error);
+        });
+      }, []);
+      
 
-export const BondOverviewPage = () => {
-    const [selectedCountry, setSelectedCountry] = useState<{label: string, value: string}|null>(null);
-    const [selectedCompany, setSelectedCompany] = useState<{label: string, value: string}|null>(null);  
-    const [selectedRow, setSelectedRow] = useState<DataRow | null>(null);
+
+    const [selectedCountry, setSelectedCountry] = useState<string|null>("All");
+    const [companyList, setCompanyList] = useState<any[]>([]);  
+    useEffect(() => {
+      if (selectedCountry) {
+        let companies: { ticker: any; commonName: any; }[] = [];
+        if (selectedCountry === 'All') {
+          for (let country in rawData) {
+            companies = companies.concat(Object.entries(rawData[country]).map(([ticker, data]:any) => {
+              return {
+                ticker: ticker,
+                commonName: data[0].CommonName
+              };
+            }));
+          }
+        } else {
+          companies = Object.entries(rawData[selectedCountry]).map(([ticker, data]:any) => {
+            return {
+              ticker: ticker,
+              commonName: data[0].CommonName
+            };
+          });
+        }
+        console.log(companies)
+        setCompanyList(companies);
+      } else {
+        setCompanyList([]);
+      }
+    }, [selectedCountry]);
+  
+
+
+    const [data, setData] = useState<any>([]);
+    useEffect(() => {
+      if (selectedCountry && selectedCompany) {
+          if (selectedCountry === 'All' && selectedCompany === 'All') {
+            // Flatten the raw data object to an array and set the data
+            const allData = Object.values(rawData).flatMap((country: any) => Object.values(country).flat());
+            setData(allData);
+          }  else if (selectedCountry === 'All') {
+            // Flatten the raw data object to an array and filter by ticker
+            const allData = Object.values(rawData).flatMap((country: any) => Object.values(country).flat());
+            const filteredData = allData.filter((bond: any) => bond.Ticker === selectedCompany);
+            setData(filteredData);
+          } else if (selectedCompany === 'All') {
+              // Get all companies from the specific country and flatten the array
+              const allData = Object.values(rawData[selectedCountry]).flat();
+              setData(allData);
+            } else {
+              // Get specific company from the specific country
+              const companyData = rawData[selectedCountry][selectedCompany];
+              if (companyData) {
+                setData(companyData);
+              } else {
+                setData([]);
+              }
+            }
+          } else {
+            setData([]);
+          }
+  }, [selectedCompany, selectedCountry]);
+
+
+
     const handleCountryChange = (selectedCountry) => {
-        setSelectedCountry(selectedCountry);
-        console.log('Selected country: ', selectedCountry);
-      };
+      setSelectedCountry(selectedCountry);
+      console.log('Selected country: ', selectedCountry);
+    };
     
     const handleCompanyChange = (selectedCompany) => {
-    setSelectedCompany(selectedCompany);
-    console.log('Selected company: ', selectedCompany);
+      setSelectedCompany(selectedCompany);
+      console.log('Selected company: ', selectedCompany);
     };
+  
 
     // const data = bonds_data;
-    const data = [
+    const fake_data = [
         {
           id: 1,
           name: "MS1 INVF Global Convertible Bond Fund",
@@ -182,21 +248,40 @@ export const BondOverviewPage = () => {
 
       ];
 
-    const handleRowSelected = (selectionModel) => {
-        if (selectionModel.length > 0) {
-            const selectedId = selectionModel[0];  // Get the first selected id
-            // const selectedRowData = data.find((row) => row.BondID === selectedId);
-            const selectedRowData = data.find((row) => row.id === selectedId);
-            if (selectedRowData) {
-            setSelectedRow(selectedRowData);
-            console.log('Selected row: ', selectedRowData);
-            } else {
-            setSelectedRow(null);
-            }
+    const handleRowSelected = (row) => {
+        if (row) {
+            setSelectedRow(row);
+            console.log("selectedrow", selectedRow);
         } else {
             setSelectedRow(null);
         }
     };
+
+
+    const [graphData, setGraphData] = useState({});
+    useEffect(() => {
+        if (selectedRow && selectedRow.RIC == "00135TAA2=") {
+            console.log("based selectedrow", selectedRow);
+            fetch(`data/${selectedRow.RIC}.json`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to fetch');
+              }
+              return response.json();
+            })
+            .then(data => setGraphData(data))
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          }
+      }, [selectedRow]);
+
+
+    useEffect(() => {
+      console.log("graphData",graphData);
+    }, [graphData]);
+
+    
 
     return (
         <div className='bond-page-container'>
@@ -206,11 +291,11 @@ export const BondOverviewPage = () => {
                     <CountrySelect onCountryChange={handleCountryChange} />
                 </div>
                 <div className='bond-filter-item'> 
-                    <CompanySelect onCompanyChange={handleCompanyChange} />
+                    <CompanySelect companyList={companyList} onCompanyChange={handleCompanyChange} />
                 </div>
             </div>
             <div className='bond-table-container'>
-                <BondTable data={data} onRowSelected={handleRowSelected} />
+                <BondTableOverview data={data ? data: fake_data} onRowSelected={handleRowSelected} />
             </div>
             <div className='bond-selected-item-graph-container'>
                 <div className='bond-selected-container'>
@@ -251,11 +336,9 @@ export const BondOverviewPage = () => {
                 </div>
                 <div className='bond-selected-graph'>
                     <h2 className='bond-selected-graph-title'>Yield Comparison</h2>
-                    <MyLineChart/>
+                    <MyLineChart graphData={graphData}/>
                 </div>
             </div>
-            {selectedCountry && (<h2>Selected Country: {selectedCountry.label}</h2>)}
-            {selectedCompany && (<h2>Selected Company: {selectedCompany.label}</h2>)}
         </div>
     )
 }
