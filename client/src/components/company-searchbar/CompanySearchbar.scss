@@ -3,21 +3,24 @@
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
-    background-color: #BAC4D1;
+    background-color: #3B4758;
+    color: #BAC4D1;
+    font-weight: 600;
   }
   
   .suggestionsContainer {
-    width: 100%;
+    position: absolute;
     margin-top: 10px;
     border-radius: 5px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
-    background-color: #ffffff;
+    background-color: #3B4758;
+    color: #3B4758;
   }
   
   .suggestion {
     padding: 10px 20px;
     font-size: 16px;
-    color: #333333;
+    color: #BAC4D1;
     border-bottom: 1px solid #f1f1f1;
   }
   

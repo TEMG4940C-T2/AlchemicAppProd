@@ -1,7 +1,22 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
 .bond-page-container{
     background-color: #161B21;
-    width: 100%;
+    width: 95%;
 }
+
+.top-container {
+    background-color: #1D232C;
+    border-radius: 12px;
+    margin-top: 1%;
+    margin-right: 2%;
+    padding: 1% 1%;
+    margin-top: 2%;
+}
+
 
 .bond-filter-container {
     display:flex;
@@ -17,7 +32,7 @@
 
 .bond-table-container{
     // background-color: #1D232C;
-    margin-right: 5%;
+    margin-right: 2%;
     margin-top: 2%;
     height: 50vh;
 }
@@ -25,7 +40,7 @@
 .bond-selected-item-graph-container {
     display: flex;
     height: 30vh;
-    margin-right: 5%;
+    margin-right: 2%;
     margin-top: 2%;
     .bond-selected-graph {
         background-color: #1D232C;

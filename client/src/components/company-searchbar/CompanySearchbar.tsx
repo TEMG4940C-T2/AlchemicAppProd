@@ -8,7 +8,7 @@ interface SearchBarProps {
 }
 // Imagine you have a list of companies that you'd like to autocomplete from:
 const companies = [
-  'Apple',
+  'JPMorgan Chase & Co (JPM)',
   'Google',
   'Facebook',
   'Amazon',

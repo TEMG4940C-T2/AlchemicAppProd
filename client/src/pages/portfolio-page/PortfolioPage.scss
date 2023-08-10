@@ -6,7 +6,7 @@
 .portfolio-page-container{
     box-sizing: border-box;
     background-color: #161B21;
-    height: 100vh;
+    min-height: 100vh;
     width: 95%;
     display: flex;
 }
@@ -25,6 +25,7 @@ h3, h4 {
 
 .LHS-container {
     box-sizing: border-box;
+    height: 96%;
     width: 46%;
     display: flex; 
     flex-direction:column;
@@ -52,18 +53,18 @@ h3, h4 {
     .top-holdings-container {   
         background-color: #1D232C;
         height: 25%;
-        margin-bottom: 4%;
+        margin-bottom: 5%;
         margin-top: 4%;
     }
     .high-prob-downward-mig-container {
         background-color: #1D232C;
         height: 25%;
-        margin-bottom: 4%;
+        margin-bottom: 5%;
     }
     .high-prob-upward-mig-container{
         background-color: #1D232C;
         height: 25%;
-        margin-bottom: 4%;
+        margin-bottom: 5%;
     }
 
     .table-title {
@@ -73,33 +74,43 @@ h3, h4 {
 
 .RHS-container {
     box-sizing: border-box;
+    height: 96%;
     width: 50%;
     display: flex; 
     flex-direction:column;
-    margin-top: 5%;
     margin-bottom: 5%;
+    margin-top: 2%;
     .yield-trend-graph-container {
+        box-sizing: border-box;
         display: flex;
         flex-direction: row;
         background-color: #1D232C;
         border-radius: 12px;
-        height: 50%;
-        width: 100%;
+        height: 45%;
+        
         
         .graph-container {
+            box-sizing: border-box;
             flex-grow: 1;
-            height: 600px;
-            width: 100%;
+            height: 100%;
         }
     }
     
     .what-if-container {
+        box-sizing: border-box;
         background-color: #1D232C;
         border-radius: 12px;
-        height: 50%;
+        height: 45%;
         width: 100%;
         margin-top: 2%;
         font-size: 1rem;
     }
 }
 
+.portfolio-page-container {
+    padding: 1% 1%;
+}
+.portfolio-table-container {
+    padding: 1% 1%;
+    border-radius: 12px;
+}

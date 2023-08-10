@@ -62,7 +62,11 @@ function CountrySelect({ onCountryChange }) {
     }),
     option: (styles) => {
         return {...styles, color: '#EEF0F4'};
-    }
+    },
+    menu: (styles) => ({ 
+      ...styles, 
+      zIndex: 9999 
+    })
   }
   return (
     <Select

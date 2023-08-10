@@ -260,7 +260,7 @@ import MyLineChart from '../../components/line-chart/LineChart';
 
     const [graphData, setGraphData] = useState({});
     useEffect(() => {
-        if (selectedRow && selectedRow.RIC == "00135TAA2=") {
+        if (selectedRow && selectedRow.RIC == "606822BK9=") {
             console.log("based selectedrow", selectedRow);
             fetch(`data/${selectedRow.RIC}.json`)
             .then(response => {
@@ -285,14 +285,16 @@ import MyLineChart from '../../components/line-chart/LineChart';
 
     return (
         <div className='bond-page-container'>
-            <h1>Bonds</h1>
-            <div className='bond-filter-container'>
-                <div className='bond-filter-item'> 
-                    <CountrySelect onCountryChange={handleCountryChange} />
-                </div>
-                <div className='bond-filter-item'> 
-                    <CompanySelect companyList={companyList} onCompanyChange={handleCompanyChange} />
-                </div>
+            <div className='top-container'>
+              <h1>Bonds</h1>
+              <div className='bond-filter-container'>
+                  <div className='bond-filter-item'> 
+                      <CountrySelect onCountryChange={handleCountryChange} />
+                  </div>
+                  <div className='bond-filter-item'> 
+                      <CompanySelect companyList={companyList} onCompanyChange={handleCompanyChange} />
+                  </div>
+              </div>
             </div>
             <div className='bond-table-container'>
                 <BondTableOverview data={data ? data: fake_data} onRowSelected={handleRowSelected} />

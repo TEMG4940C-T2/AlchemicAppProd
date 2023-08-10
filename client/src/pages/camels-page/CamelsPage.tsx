@@ -1,47 +1,206 @@
 import React, {useState} from 'react'
 import './CamelsPage.scss'
 import SearchBar from '../../components/company-searchbar/CompanySearchbar'
-import { Link, Route, Routes} from 'react-router-dom';
-import { Overview } from '../../components/camels-components/overview/Overview';
-import { Capitalization } from '../../components/camels-components/capitalization/Capitalization';
-import { AssetQuality } from '../../components/camels-components/asset-quality/AssetQuality';
-import { Profitability } from '../../components/camels-components/profitability/Profitability';
-import { FundingLiquidity } from '../../components/camels-components/funding-and-liquidity/FundingLiquidity';
-import { ManagementSupport } from '../../components/camels-components/management-and-support/ManagmentSupport';
-import { EwiSettings } from '../../components/camels-components/EWI-settings/EwiSettings';
+import WatchlistButton  from '../../components/button/Button'
+import {BiDotsVerticalRounded} from 'react-icons/bi'
 
-import { Tabs, Tab } from '@mui/material';
-
-export const CamelsPage = () => {
+export const CamelsPage= () => {
     const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
     const [selectedCAMEL, setSelectedCAMEL] = useState<string | null>("Overview");
-
-
+    
     const handleChange = (event, newValue) => {
         setSelectedCAMEL(newValue);
         console.log(selectedCAMEL)
       };
+      
 
+    const capitalAdequacyJPM = [
+    { ratio: 'Ratio1', value: "1%", status: 'Fair' },
+    { ratio: 'Ratio2', value: "1%", status: 'Poor' },
+    { ratio: 'Ratio3', value: "1%", status: 'Excellent' },
+    // add more data as needed
+    ];
+    const profitabilityJPM = [
+    { ratio: 'Ratio1', value: "1%", status: 'Fair' },
+    { ratio: 'Ratio2', value: "1%", status: 'Poor' },
+    { ratio: 'Ratio3', value: "1%", status: 'Excellent' },
+    // add more data as needed
+    ];
+    const assetQualityJPM = [
+    { ratio: 'Ratio1', value: "1%", status: 'Fair' },
+    { ratio: 'Ratio2', value: "1%", status: 'Poor' },
+    { ratio: 'Ratio3', value: "1%", status: 'Excellent' },
+    // add more data as needed
+    ];
+    const fundingLiquidityJPM = [
+    { ratio: 'Ratio1', value: "1%", status: 'Fair' },
+    { ratio: 'Ratio2', value: "1%", status: 'Poor' },
+    { ratio: 'Ratio3', value: "1%", status: 'Excellent' },
+    // add more data as needed
+    ];
     return (
-        <div className='camels-page-container'>
-            <SearchBar setSelectedCompany={setSelectedCompany}/>
-            <div>
-                <Tabs  onChange={handleChange}>
-                    <Tab label="Overview" value="Overview" />
-                    <Tab label="Capitalization" value="Capitalization" />
-                    <Tab label="AssetQuality" value="AssetQuality" />
-                    <Tab label="Profitability" value="Profitability" />
-                    <Tab label="FundingLiquidity" value="FundingLiquidity" />
-                    <Tab label="ManagementSupport" value="ManagementSupport" />
-                    <Tab label="EwiSettings" value="EwiSettings" />
-                </Tabs>
-                {selectedCAMEL === "Overview" && <Overview />}
-                {selectedCAMEL === "Capitalization" && <Capitalization />}
-                {selectedCAMEL === "AssetQuality" && <AssetQuality />}
-                {selectedCAMEL === "Profitability" && <Profitability />}
-                {selectedCAMEL === "FundingLiquidity" && <FundingLiquidity />}
-                {selectedCAMEL === "ManagementSupport" && <ManagementSupport />}
-                {selectedCAMEL === "EwiSettings" && <EwiSettings />}
+
+        <div className='ewi-settings-container'>
+            <div className='top-half' style={{ height:"20%"}}>
+                <div className='top-container'>
+                    <h1 className='title'>CAMELS </h1>
+                    <div className='searchbar' style={{width:"15%"}}> 
+                        <SearchBar setSelectedCompany={setSelectedCompany}/>
+                    </div>
+                </div>
+                <div className='company-name'>
+                    <h1>
+                        {selectedCompany ? selectedCompany : "Company Name"}
+                    </h1>
+                    <div className='watchlist-btn'>
+                        <WatchlistButton text="watchlist"/>
+                    </div>
+                </div>
+            </div>
+            <div className='bottom-half' style={{width:"100%", height:"80%", display:"flex"}}>
+                <div className='col1' style={{display:"flex", flexDirection:"column", width:"37.5%", height:"92%", marginTop: "2%", marginBottom:"4%", marginRight:"2%" }}>
+                    <div className='capital-adequacy'>
+                        <div className='settings-container'>
+                            <h3>Capital Adequacy </h3>
+                            <div className="settings-icon">
+                                <BiDotsVerticalRounded/> {/* This is the HTML entity for the vertical ellipsis (three dots) icon */}
+                            </div>
+                        </div>
+                        <div>
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Ratio</th>
+                                        <th>Value</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {selectedCompany == "JPMorgan Chase & Co (JPM)" && capitalAdequacyJPM.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.ratio}</td>
+                                        <td>{item.value}</td>
+                                        <td>
+                                        <div className={`status ${item.status}`}>
+                                            {item.status}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div className='profitability'>
+                        <div className='settings-container'>
+                            <h3>Profitability </h3>
+                            <div className="settings-icon">
+                                <BiDotsVerticalRounded/> {/* This is the HTML entity for the vertical ellipsis (three dots) icon */}
+                            </div>
+                        </div>
+                        <div>
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Ratio</th>
+                                        <th>Value</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {selectedCompany == "JPMorgan Chase & Co (JPM)" && profitabilityJPM.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.ratio}</td>
+                                        <td>{item.value}</td>
+                                        <td>
+                                        <div className={`status ${item.status}`}>
+                                            {item.status}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div className='col2' style={{display:"flex", flexDirection:"column", width:"37.5%", height:"92%", marginTop: "2%", marginBottom:"4%", marginRight:"2%"}}>
+                    <div className='asset-quality'>
+                        <div className='settings-container'>
+                            <h3>Asset Quality </h3>
+                            <div className="settings-icon">
+                                <BiDotsVerticalRounded/> {/* This is the HTML entity for the vertical ellipsis (three dots) icon */}
+                            </div>
+                        </div>
+                        <div>
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Ratio</th>
+                                        <th>Value</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {selectedCompany == "JPMorgan Chase & Co (JPM)" && assetQualityJPM.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.ratio}</td>
+                                        <td>{item.value}</td>
+                                        <td>
+                                        <div className={`status ${item.status}`}>
+                                            {item.status}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className='funding-liquidity'>
+                        <div className='settings-container'>
+                            <h3>Funding and Liquidity </h3>
+                            <div className="settings-icon">
+                                <BiDotsVerticalRounded/> {/* This is the HTML entity for the vertical ellipsis (three dots) icon */}
+                            </div>
+                        </div>
+                        <div>
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Ratio</th>
+                                        <th>Value</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {selectedCompany == "JPMorgan Chase & Co (JPM)" && fundingLiquidityJPM.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.ratio}</td>
+                                        <td>{item.value}</td>
+                                        <td>
+                                        <div className={`status ${item.status}`}>
+                                            {item.status}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div className='col3' style={{display:"flex", flexDirection:"column", width:"25%", height:"92%", marginTop: "2%", marginBottom:"4%"}}>
+                    <div className='news'> 
+                        <h3>Today's News</h3>
+                    </div>
+                </div>
             </div>
         </div>
     )

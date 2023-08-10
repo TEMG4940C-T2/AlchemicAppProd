@@ -227,7 +227,6 @@ export const PortfolioPage = () => {
     return (
         <div className='portfolio-page-container'>
             <div className='LHS-container' >
-                <h1>Portfolio</h1>
                 <div style={{display:"flex", justifyContent:"space-between"}}>
                     <div className='total-assets-container'>
                         <div className='text-container'>
@@ -245,23 +244,29 @@ export const PortfolioPage = () => {
                     </div>
                 </div>
                 <div className='top-holdings-container'>
-                    <div style={{height: "90%"}}>
+                    <div className="portfolio-table-container" style={{height: "90%"}}>
                         <h2 className='table-title'>Top Holdings</h2>
-                        <BondTable data={topHoldings} onRowSelected={() => {}}/>
+                        <div>
+                          <BondTable data={topHoldings} onRowSelected={() => {}}/>
+                        </div>
                     </div>
                 </div>
 
                 <div className='high-prob-downward-mig-container'>
-                    <div style={{height: "90%"}}>
+                    <div className="portfolio-table-container" style={{height: "90%"}}>
                         <h2 className='table-title'>High Probability of Downward Migration in Your Holdings</h2>
-                        <BondTable data={topDownwardMigration} onRowSelected={() => {}}/>
+                        <div>
+                          <BondTable data={topDownwardMigration} onRowSelected={() => {}}/>
+                        </div>
                     </div>
                 </div>
 
                 <div className='high-prob-upward-mig-container'>
-                    <div style={{height: "90%"}}>
+                    <div className="portfolio-table-container" style={{height: "90%"}}>
                         <h2 className='table-title'>High Probability of Upward Migration in Your Holdings</h2>
-                        <BondTable data={topUpwardMigration} onRowSelected={() => {}}/>
+                        <div>
+                          <BondTable data={topUpwardMigration} onRowSelected={() => {}}/>
+                        </div>
                     </div>
                 </div>
             </div>

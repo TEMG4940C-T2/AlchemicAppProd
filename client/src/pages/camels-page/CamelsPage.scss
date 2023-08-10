@@ -3,10 +3,158 @@
     margin: 0px;
     padding: 0px;
 }
-.camels-page-container{
+
+.ewi-settings-container{
     box-sizing: border-box;
     background-color: #161B21;
     height: 100vh;
     width: 95%;
+    // display: flex;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+
+.top-half {
+    box-sizing: border-box;
+    padding-top: 1%;
+}
+
+.top-container {
+    background-color: #1D232C;
+    width: 100%;
+    margin-right: 2%;
+    h1 {
+        margin-bottom: 1%;
+    }
+}
+
+.company-name {
+    box-sizing: border-box;
+    background-color: #1D232C;
+    border-radius: 12px;
+    margin-top: 1.5%;
     display: flex;
+    align-items: center;
+    height: 40%;
+    padding-left: 1%;
+
+    h1 {
+        margin-right: auto;
+    }
+
+    .watchlist-btn {
+        margin-right: 2%;
+    }
+
+   
+}
+
+.settings-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+.settings-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #EEF0F4;
+}
+
+
+.table {
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    margin-top: 4%;
+  }
+
+.table th,
+.table td {
+    text-align: left; /* Aligns text to the left */
+    padding: 15px; /* Adds more space between rows */
+    border-bottom: 1px solid #3B4758; /* Adds a horizontal line between rows */
+}
+
+.table td:first-child {
+    font-weight: bold; /* Makes the "ratio" column bold */
+}
+.table td:nth-child(2) {
+    font-weight: bold; 
+}
+
+.table-img{ 
+    background-size: 'cover'; // this will make the image fill the div
+    background-position: 'center'; // this will center the image in the div
+    width: '100%'; // or the width you want
+    height: '100%'; // or the height you want
+}
+
+.table th {
+    color: #7D8FA9; /* Sets the color of the headers */
+  }
+
+.status {
+    padding: 10px;
+    color: white;
+    margin-left: 10px;
+    border-radius: 15px;
+}
+
+.status.Fair {
+    background-color: #FFAA04;
+}
+
+.status.Poor {
+    background-color: #FF2955;
+}
+
+.status.Excellent {
+    background-color: #0DA678;
+}
+
+.capital-adequacy {
+    padding: 4% 4%;
+    height: 50%;
+    background-color: #1D232C;
+    border-radius: 12px;
+    margin-bottom: 4%;
+}
+
+.profitability {
+    padding: 4% 4%;
+    height: 50%;
+    background-color: #1D232C;
+    border-radius: 12px;
+    
+}
+
+
+.asset-quality {
+    padding: 4% 4%;
+    height: 50%;
+    background-color: #1D232C;
+    border-radius: 12px;
+    margin-bottom: 4%;
+    
+}
+
+.funding-liquidity {
+    padding: 4% 4%;
+    height: 50%;
+    background-color: #1D232C;
+    border-radius: 12px;
+    
+}
+
+.news {
+    padding: 7% 7%;
+    height: 100%;
+    background-color: #1D232C;
+    border-radius: 12px;
+
 }

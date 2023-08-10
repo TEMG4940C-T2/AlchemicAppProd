@@ -6,6 +6,7 @@ import { CamelsPage } from './pages/camels-page/CamelsPage';
 import { BondOverviewPage } from './pages/bond-overview-page/BondOverviewPage';
 import { WatchlistPage } from './pages/watchlist-page/WatchlistPage';
 import { PortfolioPage } from './pages/portfolio-page/PortfolioPage';
+import { EwiSettingsPage } from './pages/EWI-settings-page/EwiSettingsPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/bond-overview" element={<BondOverviewPage />} />
             <Route path="/watchlist" element={<WatchlistPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/ewi-settings" element={<EwiSettingsPage />} />
         </Routes>
       </div>
     </BrowserRouter>
