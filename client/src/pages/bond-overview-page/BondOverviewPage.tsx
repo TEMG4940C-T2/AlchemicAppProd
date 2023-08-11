@@ -258,7 +258,7 @@ import MyLineChart from '../../components/line-chart/LineChart';
     };
 
 
-    const [graphData, setGraphData] = useState({});
+    const [graphData, setGraphData] = useState<{ date: any; yield: any; rating: any; treasuryYield: any; }[]>([]);
     useEffect(() => {
         if (selectedRow && selectedRow.RIC == "606822BK9=") {
             console.log("based selectedrow", selectedRow);

@@ -78,16 +78,16 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
     return null;
   };
   
-  export default function MyLineChart(graphData) {
+  export default function MyLineChart({graphData}) {
 
 
     useEffect(() => {
-      console.log(graphData.graphData);
+      console.log(graphData);
     }, [graphData]);
 
     return (
         <ResponsiveContainer width="90%" height="85%">
-            <LineChart data={graphData? data : graphData.graphData.map(item => ({
+            <LineChart data={graphData.map(item => ({
     ...item,
     ratingNumber: ratingToNumber[item.rating]
   }))}>

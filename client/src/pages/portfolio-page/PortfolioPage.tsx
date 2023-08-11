@@ -3,6 +3,21 @@ import './PortfolioPage.scss'
 import BondTable from '../../components/bond-table/BondTable'
 import MyLineChart from '../../components/line-chart/LineChart';
 
+const fake_data = [
+  { date: '2020-01-01', yield: 3.2, rating: 'Aa2', treasuryYield: 2.1 },
+  { date: '2020-02-01', yield: 2.8, rating: 'Aa2', treasuryYield: 2.2 },
+  { date: '2020-03-01', yield: 2.5, rating: 'Aa2', treasuryYield: 2.3 },
+  { date: '2020-04-01', yield: 2.3, rating: 'Baa1', treasuryYield: 2.4 },
+  { date: '2020-05-01', yield: 2.4, rating: 'Baa1', treasuryYield: 2.5 },
+  { date: '2020-06-01', yield: 2.6, rating: 'Baa1', treasuryYield: 2.6 },
+  { date: '2020-07-01', yield: 2.7, rating: 'Baa1', treasuryYield: 2.7 },
+  { date: '2020-08-01', yield: 2.9, rating: 'Baa1', treasuryYield: null },
+  { date: '2020-09-01', yield: 3.0, rating: 'B1', treasuryYield: 2.9 },
+  { date: '2020-10-01', yield: 3.1, rating: 'B1', treasuryYield: 3.0 },
+  { date: '2020-11-01', yield: 3.3, rating: 'B1', treasuryYield: 3.1 },
+  { date: '2020-12-01', yield: 3.5, rating: 'B1', treasuryYield: 3.2 },
+]
+
 
 const topHoldings = [
     {
@@ -274,7 +289,7 @@ export const PortfolioPage = () => {
             <div className='RHS-container'>
                 <div className='yield-trend-graph-container'>
                     <div className='graph-container'>
-                        <MyLineChart/>
+                        <MyLineChart graphData={fake_data}/>
                     </div>
                 </div>
                 <div className='what-if-container'>
