@@ -2,7 +2,9 @@ import React from 'react'
 import './PortfolioPage.scss'
 import BondTable from '../../components/bond-table/BondTable'
 import MyLineChart from '../../components/line-chart/LineChart';
-
+import { Grid, Select, TextField } from '@mui/material';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const topHoldings = [
     {
@@ -254,7 +256,7 @@ export const PortfolioPage = () => {
 
                 <div className='high-prob-downward-mig-container'>
                     <div className="portfolio-table-container" style={{height: "90%"}}>
-                        <h2 className='table-title'>High Probability of Downward Migration in Your Holdings</h2>
+                        <h2 className='table-title' style={{ color: "#FF316A" }}>Potential Downward Migration</h2>
                         <div>
                           <BondTable data={topDownwardMigration} onRowSelected={() => {}}/>
                         </div>
@@ -263,7 +265,7 @@ export const PortfolioPage = () => {
 
                 <div className='high-prob-upward-mig-container'>
                     <div className="portfolio-table-container" style={{height: "90%"}}>
-                        <h2 className='table-title'>High Probability of Upward Migration in Your Holdings</h2>
+                        <h2 className='table-title' style={{ color: "#31EF44" }}>Potential Upward Migration</h2>
                         <div>
                           <BondTable data={topUpwardMigration} onRowSelected={() => {}}/>
                         </div>
@@ -278,11 +280,99 @@ export const PortfolioPage = () => {
                     </div>
                 </div>
                 <div className='what-if-container'>
-                    <h1>WHAT-IF Analysis</h1>
+                    <h1 className='what-if-title'>What-If Analysis</h1>
+                    <div className='what-if-section'>
+                      <h3 className='what-if-section-title'>Select a Bond</h3>
+                      <div className='what-if-section-content'>
+                      {/* TODO: create a `bond-select` selector and fix it */}
+                        <Select
+                            className='what-if-section-content'
+                            placeholder={'Select a bond'}
+                            // isSearchable={true}
+                            // isClearable={true}
+                            onChange={() => {}}
+                        />
+                      </div>
+                    </div>
+                    <hr />
+                    <Grid container spacing={1}>
+                        <Grid item className="what-if-field" xs={2}>
+                          <h5>YTM</h5>
+                        </Grid>
+                        <Grid item className='what-if-value' xs={2}>
+                          <div>6.90%</div>
+                        </Grid>
+                        <Grid item className="what-if-field" xs={2}>
+                          <h5>Maturity</h5>
+                        </Grid>
+                        <Grid item className='what-if-value' xs={2}>
+                          <div>30/10/2024</div>
+                        </Grid>
+                        <Grid item className="what-if-field" xs={2}>
+                          <h5>Cr. Mig. Pred.</h5>
+                        </Grid>
+                        <Grid item className='what-if-value' xs={2}>
+                          <div>Baa to A</div>
+                        </Grid>
+                        <Grid item className="what-if-field" xs={2}>
+                          <h5>Bid</h5>
+                        </Grid>
+                        <Grid item className="what-if-value" xs={2}>
+                          <div>99.67</div>
+                        </Grid>
+                        <Grid item className="what-if-field" xs={2}>
+                          <h5>Ask</h5>
+                        </Grid>
+                        <Grid item className="what-if-value" xs={2}>
+                          <div>99.31</div>
+                        </Grid>
+                        <Grid item className="what-if-field" xs={2}>
+                          <h5>Cr. Spread Pred</h5>
+                        </Grid>
+                        <Grid item className="what-if-value" xs={2}>
+                          <div>
+                            <KeyboardArrowUpIcon style={{ color: "green" }} />
+                            4.2 (+6%)
+                          </div>
+                        </Grid>
+                    </Grid>
+                    <div className='what-if-section'>
+                      <h3 className='what-if-section-title'>Amount</h3>
+                      <div className='what-if-amount'>
+                        <div>USD</div>
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          placeholder="Enter Amount"
+                          style={{ width: "100%" }}
+                        />
+                      </div>
+                    </div>
+                    <hr />
+                    <div className='what-if-section'>
+                      <h3 className='what-if-section-title'>Holding Period</h3>
+                      <div className='what-if-section-content'>
+                        3 years
+                      </div>
+                    </div>
+                    <div style={{display:"flex", justifyContent:"space-between"}}>
+                      <div className='predicted-npv-container'>
+                        <div className='text-container'>
+                          <h3>Predicted NPV - USD</h3>
+                          <h1>$ 420,221,956.56</h1>
+                          <h4>+18.50%</h4>
+                        </div>
+                    </div>
+                    <div className='new-yield-container'>
+                        <div className='text-container'>
+                            <h3>New Yield</h3>
+                            <h1>45.2%</h1>
+                            <h4>+4.50%</h4>
+                        </div>
+                    </div>
+                  </div>
                 </div>
             </div>
-
-
         </div>
     )
 }

@@ -55,16 +55,19 @@ h3, h4 {
         height: 27%;
         margin-bottom: 5%;
         margin-top: 4%;
+        overflow-y: auto;
     }
     .high-prob-downward-mig-container {
         background-color: #1D232C;
         height: 27%;
         margin-bottom: 5%;
+        overflow-y: auto;
     }
     .high-prob-upward-mig-container{
         background-color: #1D232C;
         height: 27%;
         margin-bottom: 5%;
+        overflow-y: auto;
     }
 
     .table-title {
@@ -80,6 +83,11 @@ h3, h4 {
     flex-direction:column;
     margin-bottom: 5%;
     margin-top: 2%;
+
+    h1 {
+        color: #EEE000;
+    }
+
     .yield-trend-graph-container {
         box-sizing: border-box;
         display: flex;
@@ -104,6 +112,58 @@ h3, h4 {
         width: 100%;
         margin-top: 2%;
         font-size: 1rem;
+    }
+
+    .what-if-section {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .what-if-section-title {
+        // font-size: 1.25rem;
+        align-self: flex-start;
+    }
+
+    .what-if-section-content {
+        align-self: flex-end;
+    }
+    
+    .what-if-amount {
+        align-self: flex-end;
+        width: 20%;
+        color: #EEF0F4;
+    }
+
+    .what-if-field {
+        color: #0077E4;
+    }
+
+    .what-if-value {
+        color: #EEF0F4;
+    }
+
+    .predicted-npv-container {
+        width: 47.5%;
+        background-color: #1D232C;
+        border-radius: 12px;
+        h3 {
+            color: #EEE000;
+        }
+    }
+    
+    .new-yield-container {
+        width: 47.5%;
+        background-color: #1D232C;
+        border-radius: 12px;
+        h3 {
+            color: #EEE000;
+        }
+    }
+
+    .text-container {
+        margin-left: 2%;
+        margin-top: 2%;
+        margin-bottom: 2%;
     }
 }
 
