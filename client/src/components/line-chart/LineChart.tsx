@@ -87,7 +87,7 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 
     return (
         <ResponsiveContainer width="90%" height="85%">
-            <LineChart data={graphData.graphData.map(item => ({
+            <LineChart data={graphData? data : graphData.graphData.map(item => ({
     ...item,
     ratingNumber: ratingToNumber[item.rating]
   }))}>
