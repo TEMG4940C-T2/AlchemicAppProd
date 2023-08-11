@@ -142,7 +142,6 @@ export default function BondTableOverview({ data, onRowSelected }) {
           // getRowId={(row) => row.BondID} // Here I'm using the `name` property as the id. Replace `name` with the appropriate property in your data.
           // getRowId={(row) => row.BondID} // Here I'm using the `name` property as the id. Replace `name` with the appropriate property in your data.
           onRowClick={handleRowClick}
-          rowSelectionModel={[]}
           getRowClassName={(params) =>
             `${params.id === selectedRow ? classes.rowSelected : ''} ${classes.root}`
           }

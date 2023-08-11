@@ -11,21 +11,21 @@ const darkTheme = createTheme({
 });
 
 const useStyles = makeStyles({
-    root: {
-      '& ::-webkit-scrollbar': {
-        width: '12px',
-      },
-      '& ::-webkit-scrollbar-thumb': {
-        backgroundColor: '#888',
-        borderRadius: '6px',
-      },
-      '& ::-webkit-scrollbar-thumb:hover': {
-        backgroundColor: '#555',
-      },
+  root: {
+    '& ::-webkit-scrollbar': {
+      width: '12px',
     },
-  });
+    '& ::-webkit-scrollbar-thumb': {
+      backgroundColor: '#888',
+      borderRadius: '6px',
+    },
+    '& ::-webkit-scrollbar-thumb:hover': {
+      backgroundColor: '#555',
+    },
+  },
+});
 
-export default function DataTable({ columns, rows }) {
+export default function DataTable({ columns, rows, onRowSelect }) {
   const classes = useStyles();
   const [searchText, setSearchText] = React.useState('');
   const [filteredRows, setFilteredRows] = React.useState([]);
@@ -42,20 +42,42 @@ export default function DataTable({ columns, rows }) {
     );
   }, [rows, searchText]);
 
+  const handleRowClick = (params) => {
+    onRowSelect(params.row);
+  }
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <div className={classes.root} style={{ display: 'flex', flexDirection: 'column', height: '100%', width:"100%" }}>
+      <div
+        className={classes.root}
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', gap:"1rem", padding:"2%", width: '100%' }}
+      >
         <TextField
           id="search"
           label="Search"
           type="search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          sx={{
+            backgroundColor: "#1D232C",
+            borderRadius: '16px',
+            border: "0px",
+            
+          }}
         />
-        <div >
+        <div>
           <DataGrid
             rows={filteredRows}
             columns={columns}
+            onRowClick={handleRowClick}
+            hideFooterPagination
+            hideFooter
+            sx={{
+              backgroundColor: "#1D232C",
+              borderRadius: '16px',
+              border: "0px",
+              
+            }}
           />
         </div>
       </div>

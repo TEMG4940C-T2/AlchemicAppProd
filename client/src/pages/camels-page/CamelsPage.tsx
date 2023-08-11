@@ -42,7 +42,7 @@ export const CamelsPage= () => {
 
         <div className='camels-settings-container'>
             <div className='top-half' style={{ height:"20%", display:"flex", flexDirection: "column", gap: "1.25rem"}}>
-                <div style={{display:"flex", flexDirection:"column", width: "100%", gap:"1rem", padding:"2% 1%", background:"#1D232C", borderRadius:"15px"  }}>
+                <div style={{display:"flex", flexDirection:"column", width: "100%", padding:"2% 1%", background:"#1D232C", borderRadius:"15px"  }}>
                     <h1 className='title'>CAMELS </h1>
                     <div  style={{maxWidth:"20%"}}> 
                         <SearchBar setSelectedCompany={setSelectedCompany}/>
