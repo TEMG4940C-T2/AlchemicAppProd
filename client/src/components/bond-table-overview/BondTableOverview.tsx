@@ -98,6 +98,7 @@ function compareRatings(currentRating, predictedRating) {
   }
 }
 
+
 export default function BondTableOverview({ data, onRowSelected }) {
   const classes = useStyles();
   const [selectedRow, setSelectedRow] = useState(null)
@@ -132,8 +133,9 @@ export default function BondTableOverview({ data, onRowSelected }) {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <div style={{ height: '100%', width: '100%' }}>
+      <div className="myDataGrid" style={{ height: '100%', width: '100%' } }>
         <DataGrid
+          className="DataGrid"
           rows={data.map((row, index) => ({ id: index, ...row }))}
           // rows={data}
           columns={columns}

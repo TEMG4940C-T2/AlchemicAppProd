@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home }  from './pages/home/Home'
 import { SideNavigation } from './components/side-navigation/SideNavigation';
@@ -7,6 +6,7 @@ import { BondOverviewPage } from './pages/bond-overview-page/BondOverviewPage';
 import { WatchlistPage } from './pages/watchlist-page/WatchlistPage';
 import { PortfolioPage } from './pages/portfolio-page/PortfolioPage';
 import { EwiSettingsPage } from './pages/EWI-settings-page/EwiSettingsPage';
+import "./App.scss"
 
 function App() {
   return (

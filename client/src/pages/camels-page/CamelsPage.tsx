@@ -40,19 +40,19 @@ export const CamelsPage= () => {
     ];
     return (
 
-        <div className='ewi-settings-container'>
-            <div className='top-half' style={{ height:"20%"}}>
-                <div className='top-container'>
+        <div className='camels-settings-container'>
+            <div className='top-half' style={{ height:"20%", display:"flex", flexDirection: "column", gap: "1.25rem"}}>
+                <div style={{display:"flex", flexDirection:"column", width: "100%", gap:"1rem", padding:"2% 1%", background:"#1D232C", borderRadius:"15px"  }}>
                     <h1 className='title'>CAMELS </h1>
-                    <div className='searchbar' style={{width:"15%"}}> 
+                    <div  style={{maxWidth:"20%"}}> 
                         <SearchBar setSelectedCompany={setSelectedCompany}/>
                     </div>
                 </div>
-                <div className='company-name'>
+                <div style={{display:"flex", height:"100%", width: "100%", gap:"1rem", padding:"2% 1%", background:"#1D232C", borderRadius:"15px"  }}>
                     <h1>
                         {selectedCompany ? selectedCompany : "Company Name"}
                     </h1>
-                    <div className='watchlist-btn'>
+                    <div className='watchlist-btn' style={{marginLeft: "auto"}}>
                         <WatchlistButton text="watchlist"/>
                     </div>
                 </div>
