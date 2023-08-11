@@ -269,17 +269,23 @@ import MyLineChart from '../../components/line-chart/LineChart';
               }
               return response.json();
             })
-            .then(data => setGraphData(data))
+            .then(convertGraphData)
             .catch(error => {
               console.error('Error:', error);
             });
           }
       }, [selectedRow]);
 
-
-    useEffect(() => {
-      console.log("graphData",graphData);
-    }, [graphData]);
+    function convertGraphData(data){
+      let convertedData = Object.entries(data).map(([date, data]:any) => ({
+        date,
+        yield: data.YTM,
+        rating: data.Rating,
+        treasuryYield: data.TreasuryYield
+      }));
+      setGraphData(convertedData)
+      console.log("graph data", graphData)
+    }
 
     
 
