@@ -40,3 +40,9 @@
 .early-warning-indicator-title {
   margin-left: -150px;
 }
+
+.ewi-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
