@@ -10,8 +10,29 @@ import MyLineChart from '../../components/line-chart/LineChart';
   export const BondOverviewPage = () => {
     const [selectedCompany, setSelectedCompany] = useState<string|null>("All");  
     const [selectedRow, setSelectedRow] = useState<any | null>(null);
-  
-    
+    const [response, setResponse] = useState({spread: ""});
+
+    const handlePrediction = (event) => {
+      event.preventDefault();
+
+      fetch('http://localhost:5000/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({rating0: selectedRow.moodysRating, rating1: selectedRow.crMigPred}),
+        body: JSON.stringify({rating0: "Aa1", rating1: "Aa3"}),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          setResponse(data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    };
+
     const [rawData, setRawData] = useState<any>([]);
     useEffect(() => {
       fetch('data/bonds_data_frontend.json')
@@ -332,10 +353,13 @@ import MyLineChart from '../../components/line-chart/LineChart';
                                 </div>
                                 <div className='bond-selected-credit-spread'>
                                     <h2>Credit Spread Prediction</h2>
+                                    {/* TODO: get rid of the button */}
+                                    <button onClick={handlePrediction}> Predict </button>
                                     <div className='bond-selected-credit-spread-stats'>
-                                        {selectedRow && (<>
+                                        {selectedRow && response && (<>
                                         <p className='bond-selected-credit-percentage'>{selectedRow.crSpreadSL}</p>
-                                        <p className='bond-selected-credit-crSpreadPred'>{selectedRow.crSpreadPred}</p>
+                                        {/* <p className='bond-selected-credit-crSpreadPred'>{selectedRow.crSpreadPred}</p> */}
+                                        <p className='bond-selected-credit-crSpreadPred'>{response.spread}</p>
                                         </>)}
                                     </div>
                                 </div>
