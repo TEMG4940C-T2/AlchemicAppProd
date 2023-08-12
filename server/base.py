@@ -1,4 +1,5 @@
 from flask import Flask
+import pickle
 
 api = Flask(__name__)
 
@@ -10,8 +11,9 @@ def my_profile():
     }
     return response_body
 
-@api.route('/epic')
-def epic():
+
+@api.route('/creditMigrationPrediction')
+def creditMigrationPrediction():
     response_body = {
         "name": "Epic",
         "about": "games"

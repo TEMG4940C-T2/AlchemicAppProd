@@ -274,6 +274,20 @@ import MyLineChart from '../../components/line-chart/LineChart';
               console.error('Error:', error);
             });
           }
+        else if (selectedRow && selectedRow.RIC == "46625HHV5=") {
+            console.log("based selectedrow", selectedRow);
+            fetch(`data/${selectedRow.RIC}.json`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to fetch');
+              }
+              return response.json();
+            })
+            .then(convertGraphData)
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          }
       }, [selectedRow]);
 
     function convertGraphData(data){
