@@ -130,8 +130,10 @@ export default function BondTable({ data, onRowSelected }) {
   }) : [];
 
   return (
+    <div style={{ height:"100%"}}>
+
     <ThemeProvider theme={darkTheme}>
-      <div style={{ height: '100%', width: '100%' }}>
+      <div style={{ display:"flex"}}>
         <DataGrid
           rows={data.map((row, index) => ({ id: index, ...row }))}
           // rows={data}
@@ -140,7 +142,6 @@ export default function BondTable({ data, onRowSelected }) {
           // getRowId={(row) => row.BondID} // Here I'm using the `name` property as the id. Replace `name` with the appropriate property in your data.
           onRowSelectionModelChange={onRowSelected}
           onRowClick={handleRowClick}
-          rowSelectionModel={[]}
           getRowClassName={(params) =>
             `${params.id === selectedRow ? classes.rowSelected : ''} ${classes.root}`
           }
@@ -151,8 +152,9 @@ export default function BondTable({ data, onRowSelected }) {
           }}
           hideFooterPagination
           hideFooter
-        />
+          />
       </div>
     </ThemeProvider>
+    </div>
   );
 }

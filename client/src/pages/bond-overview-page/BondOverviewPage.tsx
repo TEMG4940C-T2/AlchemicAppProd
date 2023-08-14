@@ -6,10 +6,12 @@ import CompanySelect from '../../components/company-select/CompanySelect'
 import BondTableOverview from '../../components/bond-table-overview/BondTableOverview';
 import Button from '../../components/button/Button';
 import MyLineChart from '../../components/line-chart/LineChart';
+import {FaArrowRight} from 'react-icons/fa';
+
 
   export const BondOverviewPage = () => {
     const [selectedCompany, setSelectedCompany] = useState<string|null>("All");  
-    const [selectedRow, setSelectedRow] = useState<any | null>(null);
+    const [selectedRow, setSelectedRow] = useState<any | null>(false);
   
     
     const [rawData, setRawData] = useState<any>([]);
@@ -305,7 +307,7 @@ import MyLineChart from '../../components/line-chart/LineChart';
 
     return (
         <div className='bond-page-container'>
-            <div className='top-container'>
+            <div className='top-container' style={{width:"98%"}}>
               <h1>Bonds</h1>
               <div className='bond-filter-container'>
                   <div className='bond-filter-item'> 
@@ -323,34 +325,89 @@ import MyLineChart from '../../components/line-chart/LineChart';
                 <div className='bond-selected-container'>
                     <div className='bond-selected-item'>
                             <div className='bond-selected-title'>
-                                <div className='bond-selected-title-text'>
-                                    {selectedRow && (<>
-                                    <p className='bond-selected-name'>{selectedRow.name}</p>
-                                    <p className='bond-selected-ticker'>{selectedRow.ticker}</p> 
+                                <div className='bond-selected-title-text' style={{padding:"4% 2%"}}>
+                                    {selectedRow && selectedRow.RIC == "606822BK9=" &&(<>
+                                    <p style={{fontSize:"2rem"}} className='bond-selected-name'>{selectedRow.CommonName}</p>
+                                    <p style={{fontSize:"1.5rem"}} className='bond-selected-ticker'>{selectedRow.ISIN}</p>
+                                    <div style={{color:"#7DC1FF", fontWeight:'600', paddingTop:"4%", display:"flex", flexDirection:"column", gap:"1rem"}}>
+                                      <div style={{display:"flex", justifyContent:"space-between"}}>
+                                        <span>YTM:</span><span style={{color:"white"}}> 8.960%</span>
+                                        <span>Maturity:</span><span style={{color:"white"}}> {selectedRow.Maturity}</span>
+                                      </div>
+                                    </div> 
+                                    </>)}
+                                    {selectedRow && selectedRow.RIC == "46625HHV5=" &&(<>
+                                    <p style={{fontSize:"2rem"}} className='bond-selected-name'>{selectedRow.CommonName}</p>
+                                    <p style={{fontSize:"1.5rem"}} className='bond-selected-ticker'>{selectedRow.ISIN}</p>
+                                    <div style={{color:"#7DC1FF", fontWeight:'600', paddingTop:"4%", display:"flex", flexDirection:"column", gap:"1rem"}}>
+                                        <div style={{display:"flex", justifyContent:"space-between"}}>
+                                          <span>YTM:</span><span style={{color:"white"}}> 8.960%</span>
+                                          <span>Maturity:</span><span style={{color:"white"}}> {selectedRow.Maturity}</span>
+                                        </div>
+                                    </div> 
+                                    </>)}
+                                    {!selectedRow && (<>
+                                     <h2> Please Select a Bond</h2>
                                     </>)}
                                 </div>
                                 <div className='bond-selected-title-watchlist-button'>
-                                    <Button text={"Watchlist +"}/>
+                                    {selectedRow && selectedRow.RIC == "606822BK9=" &&(<>
+                                      <Button text={"Watchlist +"}/>
+                                    </>)}
+                                    {selectedRow && selectedRow.RIC == "46625HHV5=" &&(<>
+                                      <Button text={"Watchlist +"}/>
+                                    </>)}
                                 </div>
                             </div>
                             <div className='bond-selected-predictions'>
-                                <div className='bond-selected-credit-migration'>
+                                <div className='bond-selected-credit-migration' style={{padding: "4% 4%"}}>
                                     <h2> Probability of Credit Migration </h2>
-                                    <div className='bond-selected-credit-migration-stats'>
-                                        {selectedRow && (<>
-                                        <p className='bond-selected-credit-percentage'>{selectedRow.crMigCL}</p>
-                                        <p className='bond-selected-credit-moodysRating'>{selectedRow.moodysRating}</p>
-                                        <p className='bond-selected-credit-crMigPred'>{selectedRow.crMigPred}</p>
+                                    <div className='bond-selected-credit-migration-stats' style={{padding: "4% 4%", fontSize:"1.5rem"}}>
+                                        {selectedRow && selectedRow.RIC == "606822BK9=" &&(<>
+                                        <div style={{paddingRight:"4%", borderRight:"2px solid #707070"}}>
+                                          <p className='bond-selected-credit-percentage'>60%</p>
+                                        </div>
+                                        <p className='bond-selected-credit-moodysRating'>{selectedRow.MoodysRating}</p>
+                                        <div style={{display:"flex", alignItems:"center"}}>
+                                          <FaArrowRight size={20} color={"#FFFFFF"}  />
+                                        </div>
+                                        <p className='bond-selected-credit-crMigPred'>A2</p>
+                                        </>)}
+                                        {selectedRow && selectedRow.RIC == "46625HHV5=" &&(<>
+                                          <div style={{paddingRight:"4%", borderRight:"2px solid #707070"}}>
+                                            <p className='bond-selected-credit-percentage'>52%</p>
+                                          </div>
+                                            <p className='bond-selected-credit-moodysRating'>{selectedRow.MoodysRating}</p>
+                                          <div style={{display:"flex", alignItems:"center"}}>
+                                            <FaArrowRight size={20} color={"#FFFFFF"}  />
+                                          </div>
+                                          <p className='bond-selected-credit-crMigPred'>Aa3</p>
                                         </>)}
                                     </div>
                                 </div>
-                                <div className='bond-selected-credit-spread'>
+                                <div className='bond-selected-credit-spread' style={{padding: "4% 4%"}}>
                                     <h2>Credit Spread Prediction</h2>
-                                    <div className='bond-selected-credit-spread-stats'>
-                                        {selectedRow && (<>
-                                        <p className='bond-selected-credit-percentage'>{selectedRow.crSpreadSL}</p>
-                                        <p className='bond-selected-credit-crSpreadPred'>{selectedRow.crSpreadPred}</p>
-                                        </>)}
+                                    <div className='bond-selected-credit-spread-stats' style={{padding: "4% 4%"}}>
+                                        {selectedRow && selectedRow.RIC == "606822BK9=" && <>
+                                        <div style={{display:"flex", justifyContent:"center", width:"100%", fontSize:"1.5rem"}}>
+                                          <div style={{borderRight: "2px solid #707070", paddingRight:"4%"}}>
+                                            <p className='bond-selected-credit-percentage'>88%</p>
+                                          </div>
+                                          <div style={{paddingLeft:"4%"}}>
+                                            <p className='bond-selected-credit-crSpreadPred' style={{color:"#7DC1FF"}}>8.0 (+2%)</p>
+                                          </div>
+                                        </div>
+                                        </>}
+                                        {selectedRow && selectedRow.RIC == "46625HHV5=" && <>
+                                        <div style={{display:"flex", justifyContent:"center", width:"100%", fontSize:"1.5rem"}}>
+                                          <div style={{borderRight: "2px solid #707070", paddingRight:"4%"}}>
+                                            <p className='bond-selected-credit-percentage'>85%</p>
+                                          </div>
+                                          <div style={{paddingLeft:"4%"}}>
+                                            <p className='bond-selected-credit-crSpreadPred' style={{color:"#7DC1FF"}}>7.8 (-2%)</p>
+                                          </div>
+                                        </div>
+                                        </>}
                                     </div>
                                 </div>
                             </div>

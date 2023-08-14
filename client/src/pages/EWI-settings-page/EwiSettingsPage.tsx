@@ -58,7 +58,7 @@ export const EwiSettingsPage= () => {
     }, [selectedIndicator])
     
     
-    const [selectedEwiAlert, setSelectedEwiAlert] = useState<any | null>(null);
+    const [selectedEwiAlert, setSelectedEwiAlert] = useState<any | null>("exceeds");
     useEffect(() => {
         console.log("selected EWI Alert", selectedEwiAlert)
     }, [selectedEwiAlert])
@@ -71,14 +71,6 @@ export const EwiSettingsPage= () => {
     
     const [alerts, setAlerts] = useState<Alert[]>([]);
     const handleFormSubmit = (data) => {
-        if (
-            selectedCompany &&
-            selectedIndicator &&
-            selectedEwiSlider &&
-            selectedEwiAlert &&
-            data.fromDate &&
-            data.toDate
-        ) {
             const newAlert = {
                 company: selectedCompany,
                 indicator: selectedIndicator,
@@ -87,9 +79,6 @@ export const EwiSettingsPage= () => {
                 dates: data,
             };
             setAlerts((prevAlerts) => [...prevAlerts, newAlert]);
-        } else {
-            console.error("Please fill out all the fields");
-        }
     };
 
 
@@ -127,7 +116,7 @@ export const EwiSettingsPage= () => {
                                     {selectedIndicator && <h2>{selectedIndicator.indicator}</h2>}
                                     {!selectedIndicator && <h2>Please select an indicator</h2>}
                                 </div>
-                                <div style={{display:"flex", justifyContent:"center", width: "30%", height:"40%"}}>
+                                <div style={{display:"flex", justifyContent:"center", width: "30%", height:"50%"}}>
                                     <SelectEwi onOptionSelect={setSelectedEwiAlert} />
                                 </div>
                                 <div style={{width: "30%", marginRight: "5%"}}>

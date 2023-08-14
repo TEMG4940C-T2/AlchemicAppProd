@@ -23,16 +23,6 @@ function DateForm({ onSubmit }) {
     <ThemeProvider theme={darkTheme}>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{display:"flex", flexDirection:"column", gap:"1rem", paddingTop:"2%"}}>
         <TextField
-          id="from-date"
-          label="From date"
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          sx={{ width: '100%'}}
-          name="from-date"
-        />
-        <TextField
           id="to-date"
           label="To date"
           type="date"

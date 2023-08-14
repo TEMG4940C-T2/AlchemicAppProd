@@ -10,11 +10,29 @@ interface SearchBarProps {
 const companies = [
   'JPMorgan Chase & Co (JPM)',
   'Mitsubishi UFJ Financial Group Inc (MUFG)',
-  'Facebook',
-  'Amazon',
-  'Microsoft',
+  'BNP Paribas SA (BNP)',
+  'HSBC Holdings plc (HSBC)',
+  'Credit Agricole SA (ACA)',
+  'Barclays PLC (BARC)',
+  'Danske Bank A/S (DANSKE)',
+  'Deutsche Bank AG (DBK)',
+  'UniCredit S.p.A. (UCG)',
+  'Societe Generale SA (GLE)',
+  'Royal Bank of Canada (RY)',
+  'Bank of Nova Scotia (BNS)',
+  'Toronto-Dominion Bank (TD)',
+  'Commonwealth Bank of Australia (CBA)',
+  'Westpac Banking Corporation (WBC)',
+  'National Australia Bank Ltd. (NAB)',
+  'Australia and New Zealand Banking Group Limited (ANZ)',
+  'ING Groep N.V. (INGA)',
+  'Santander Group (SAN)',
+  'BBVA (BBVA)',
+  'Nordea Bank Abp (NDA-FI)',
+  'Credit Suisse Group AG (CSGN)',
+  'UBS Group AG (UBSG)'
   // add more companies here
-];
+  ];
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = value => {

@@ -92,7 +92,7 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
     ratingNumber: ratingToNumber[item.rating]
   }))}>
             <CartesianGrid strokeDasharray="1 0" vertical={false} />
-            <XAxis strokeWidth={2.5} dataKey="date" stroke="#7D8FA9" interval={120} />
+            <XAxis strokeWidth={2.5} dataKey="date" stroke="#7D8FA9" interval={365} />
             <YAxis strokeWidth={2.5} yAxisId="left" orientation="left" stroke="#B142F5" />
             <YAxis strokeWidth={2.5} yAxisId="right" orientation="left" stroke="#42AAF5" domain={[1, 21]} tick={CustomYAxisTick} />
             <Tooltip content={<CustomTooltip />} />

@@ -104,18 +104,21 @@ h3 {
     color: white;
     margin-left: 10px;
     border-radius: 15px;
+    background-color: #4AB1B8;
+    text-align: center;
+    height: 10%
 }
 
-.status.Fair {
-    background-color: #FFAA04;
+.OneStdAbove {
+    color: #FFAA04;
 }
 
-.status.Poor {
-    background-color: #FF2955;
+.TwoStdAbove {
+    color: #FF2955;
 }
 
-.status.Excellent {
-    background-color: #0DA678;
+.OneStdBelow {
+    color: #0DA678;
 }
 
 .capital-adequacy {
