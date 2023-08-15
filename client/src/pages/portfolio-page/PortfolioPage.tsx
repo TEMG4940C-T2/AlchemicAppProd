@@ -312,17 +312,17 @@ const topUpwardMigration = [{
 // Default values for the form
 const defaultValuesF = {
   id: 15,
-  name: "NVIDIA GLOBAL CONVERTIBLE BOND FUND",
-  ticker: "LU12345678",
-  cpn: "4.15",
-  maturity: "30/10/2025",
-  spread: "6.31",
-  ytm: "8.960%",
-  moodysRating: "Aaa",
-  crMigPred: "Caa2",
-  crMigCL: "80%",
-  crSpreadPred: "4.2 (+6%)",
-  crSpreadSL: "88%",
+  name: "",
+  ticker: "",
+  cpn: "",
+  maturity: "",
+  spread: "",
+  ytm: "",
+  moodysRating: "",
+  crMigPred: "",
+  crMigCL: "",
+  crSpreadPred: "",
+  crSpreadSL: "",
 };
 
 
