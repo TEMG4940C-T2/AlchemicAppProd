@@ -36,19 +36,40 @@
 
 .early-warning-indicators {
   margin-right: 2%;
+  margin-top: -50px;
+}
+
+.early-warning-indicators-title-contianer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
 .early-warning-indicator-title {
-  margin-top: -50px;
   margin-left: -150px;
+}
+
+.company-select-container {
+  width: 20%;
+  margin-left: 50px;
 }
 
 .ewi-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 100px;
+}
+
+.EWI-container {
+  margin-top: 30px;
 }
 
 .ewi-title {
   font-weight: bold;
+  font-size: larger;
+}
+
+.benchmark-title {
+  color: #f9a83d;
 }

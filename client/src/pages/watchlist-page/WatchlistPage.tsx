@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import "./WatchlistPage.scss";
 import BondTable from "../../components/bond-table/BondTable";
 import MyLineChart from "../../components/line-chart/LineChart";
 import EWIMeter from "../../components/ewi-meter/EWIMeter";
 import { Grid } from "@mui/material";
+import CompanySelect from "../../components/company-select/CompanySelect";
 
 const yourWatchlist = [
   {
@@ -78,47 +80,111 @@ const yourWatchlist = [
   },
 ];
 
-const ewiMetrics = [
-  {
-    company: "JP Morgan",
-    name: "Current Ratio",
-    desc: "Current Assets / Current Liabilities",
-    value: 0.8,
-  },
-  {
-    company: "JP Morgan",
-    name: "Quick Ratio",
-    desc: "(Current Assets - Inventory) / Current Liabilities",
-    value: 0.6,
-  },
-  {
-    company: "Bank of America",
-    name: "Debt to Assets Ratio",
-    desc: "Total Debt / Total Assets",
-    value: 0.4,
-  },
-  {
-    company: "Bank of America",
-    name: "NPL/TL",
-    desc: "Non-Performing Loan / Total Gross Loans",
-    value: 0.2,
-    segmentColors: ["limegreen", "gold", "firebrick"],
-  },
-  {
-    company: "Bank of America",
-    name: "Debt to EBIT Ratio",
-    desc: "Total Debt / EBIT",
-    value: 0.1,
-  },
-  {
-    company: "Bank of America",
-    name: "Debt to EBITDA Ratio",
-    desc: "Total Debt / EBITDA",
-    value: 0.9,
-  },
+interface Broker {
+  company: string;
+  name: string;
+  desc: string;
+  value: number;
+  segmentColors?: Array<string>;
+}
+
+const metrics: Record<string, Array<Broker>> = {
+  JPM: [
+    {
+      company: "Archit",
+      name: "Current Ratio",
+      desc: "Current Assets / Current Liabilities",
+      value: 0.8,
+    },
+    {
+      company: "JP Morgan",
+      name: "Quick Ratio",
+      desc: "(Current Assets - Inventory) / Current Liabilities",
+      value: 0.6,
+    },
+    {
+      company: "Bank of America",
+      name: "Debt to Assets Ratio",
+      desc: "Total Debt / Total Assets",
+      value: 0.4,
+    },
+    {
+      company: "Bank of America",
+      name: "NPL/TL",
+      desc: "Non-Performing Loan / Total Gross Loans",
+      value: 0.2,
+      segmentColors: ["limegreen", "gold", "firebrick"],
+    },
+    {
+      company: "Bank of America",
+      name: "Debt to EBIT Ratio",
+      desc: "Total Debt / EBIT",
+      value: 0.1,
+    },
+    {
+      company: "Bank of America",
+      name: "Debt to EBITDA Ratio",
+      desc: "Total Debt / EBITDA",
+      value: 0.9,
+    },
+  ],
+  BAC: [
+    {
+      company: "Bank of America",
+      name: "Debt to Assets Ratio",
+      desc: "Total Debt / Total Assets",
+      value: 0.4,
+    },
+    {
+      company: "Bank of America",
+      name: "NPL/TL",
+      desc: "Non-Performing Loan / Total Gross Loans",
+      value: 0.2,
+      segmentColors: ["limegreen", "gold", "firebrick"],
+    },
+    {
+      company: "Bank of America",
+      name: "Debt to EBIT Ratio",
+      desc: "Total Debt / EBIT",
+      value: 0.1,
+    },
+  ],
+  def: [],
+};
+
+const companyList = [
+  { id: 1, commonName: "JPMorgan Chase", ticker: "JPM" },
+  { id: 2, commonName: "Bank of America", ticker: "BAC" },
+  { id: 3, commonName: "Citigroup", ticker: "C" },
+  { id: 4, commonName: "Wells Fargo", ticker: "WFC" },
+  { id: 5, commonName: "Goldman Sachs", ticker: "GS" },
+  // add more rows as needed
 ];
 
+const DropdownComponent = () => {
+  const [selectedCompany, setSelectedCompany] = useState("");
+
+  const handleCompanyChange = (event) => {
+    {
+      setSelectedCompany(event.target.value);
+    }
+    console.log("Selected company: ", selectedCompany);
+  };
+};
+
 export const WatchlistPage = () => {
+  const [selectedCompany, setSelectedCompany] = useState("");
+
+  const handleCompanyChange = (e) => {
+    const selectedCompany = e;
+    setSelectedCompany(e);
+  };
+
+  let selectedMetrics = metrics["def"];
+  if (selectedCompany in metrics) {
+    selectedMetrics = metrics[selectedCompany];
+  }
+
   return (
     <div className="watchlist-page-container">
       <h1>Watchlists</h1>
@@ -138,9 +204,18 @@ export const WatchlistPage = () => {
           </div>
         </div>
         <div className="early-warning-indicators">
-          <h1 className="early-warning-indicator-title">
-            Early Warning Indicators
-          </h1>
+          <div className="early-warning-indicators-title-contianer">
+            <h1 className="early-warning-indicator-title">
+              Early Warning Indicators
+            </h1>
+            <div className="company-select-container">
+              <CompanySelect
+                companyList={companyList}
+                onCompanyChange={handleCompanyChange}
+              />
+            </div>
+          </div>
+
           {/* a gauge chart from react-d3-speedometer
           https://www.npmjs.com/package/react-d3-speedometer
         
@@ -149,27 +224,29 @@ export const WatchlistPage = () => {
             1st row: 3 gauges
             2nd row: 3 line charts
             */}
-          <Grid
-            container
-            rowSpacing={2}
-            columnSpacing={1}
-            spacing={{ xs: 3, md: 3 }}
-            columns={{ xs: 3, sm: 4, md: 12 }}
-          >
-            {Array.from(ewiMetrics).map((metric, index) => (
-              <Grid item xs={0} sm={4} md={4} key={index}>
-                <EWIMeter
-                  metricCompany={metric.company}
-                  metricName={metric.name}
-                  metricDesc={metric.desc}
-                  quantity={metric.value}
-                  segmentColors={metric.segmentColors}
-                  lastUpdated={1}
-                />
-              </Grid>
-            ))}
-          </Grid>
-          {/* <EWIMeter metricName="Current Ratio" quantity={0.65} lastUpdated={1} /> */}
+          <div className="EWI-container">
+            <Grid
+              container
+              rowSpacing={4}
+              columnSpacing={1}
+              spacing={{ xs: 3, md: 3 }}
+              columns={{ xs: 3, sm: 4, md: 12 }}
+            >
+              {Array.from(selectedMetrics).map((metric, index) => (
+                <Grid item xs={0} sm={4} md={4} key={index}>
+                  <EWIMeter
+                    metricCompany={metric.company}
+                    metricName={metric.name}
+                    metricDesc={metric.desc}
+                    quantity={metric.value}
+                    segmentColors={metric.segmentColors}
+                    lastUpdated={1}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            {/* <EWIMeter metricName="Current Ratio" quantity={0.65} lastUpdated={1} /> */}
+          </div>
         </div>
       </div>
     </div>

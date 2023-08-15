@@ -13,12 +13,11 @@ const EWIMeter = ({
 }) => {
   return (
     <div className="ewi-meter">
-      <h3 className="ewi-title">
-        {metricCompany} {metricName}
-      </h3>
+      <h3 className="ewi-title">{metricName}</h3>
+      <h3 className="benchmark-title">Industry Benchmark: </h3>
       <div
         className="ewi-container"
-        style={{ height: "100px", marginTop: "40px", marginBottom: "15px" }}
+        style={{ height: "120px", marginTop: "40px", marginBottom: "15px" }}
       >
         <ReactSpeedometer
           minValue={0}
@@ -29,12 +28,9 @@ const EWIMeter = ({
           segmentColors={segmentColors}
           segments={2}
           height={170}
-          width={230}
+          width={220}
         />
       </div>
-      <h3 className="benchmark-title" style={{ marginTop: "-12px" }}>
-        Industry Benchmark
-      </h3>
     </div>
   );
 };
