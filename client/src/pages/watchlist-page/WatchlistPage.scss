@@ -25,19 +25,21 @@
   background-color: #1d232c;
   margin-right: 40px;
   margin-left: -120px;
+  height: 80%;
 }
 
 .top-winners {
   width: 50%;
   background-color: #1d232c;
+  height: 80%;
 }
 
 .early-warning-indicators {
-  margin-top: 1%;
   margin-right: 2%;
 }
 
 .early-warning-indicator-title {
+  margin-top: -50px;
   margin-left: -150px;
 }
 
@@ -45,4 +47,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.ewi-title {
+  font-weight: bold;
 }

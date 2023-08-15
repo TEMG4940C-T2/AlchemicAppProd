@@ -80,32 +80,38 @@ const yourWatchlist = [
 
 const ewiMetrics = [
   {
+    company: "JP Morgan",
     name: "Current Ratio",
     desc: "Current Assets / Current Liabilities",
     value: 0.8,
   },
   {
+    company: "JP Morgan",
     name: "Quick Ratio",
     desc: "(Current Assets - Inventory) / Current Liabilities",
     value: 0.6,
   },
   {
+    company: "Bank of America",
     name: "Debt to Assets Ratio",
     desc: "Total Debt / Total Assets",
     value: 0.4,
   },
   {
+    company: "Bank of America",
     name: "NPL/TL",
     desc: "Non-Performing Loan / Total Gross Loans",
     value: 0.2,
-    segmentColors: ["limegreen", "gold", "firebrick"]
+    segmentColors: ["limegreen", "gold", "firebrick"],
   },
   {
+    company: "Bank of America",
     name: "Debt to EBIT Ratio",
     desc: "Total Debt / EBIT",
     value: 0.1,
   },
   {
+    company: "Bank of America",
     name: "Debt to EBITDA Ratio",
     desc: "Total Debt / EBITDA",
     value: 0.9,
@@ -139,14 +145,27 @@ export const WatchlistPage = () => {
           https://www.npmjs.com/package/react-d3-speedometer
         
            */}
-           {/* create a table of 2*3
+          {/* create a table of 2*3
             1st row: 3 gauges
             2nd row: 3 line charts
             */}
-          <Grid container rowSpacing={1} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          <Grid
+            container
+            rowSpacing={2}
+            columnSpacing={1}
+            spacing={{ xs: 3, md: 3 }}
+            columns={{ xs: 3, sm: 4, md: 12 }}
+          >
             {Array.from(ewiMetrics).map((metric, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index}>
-                <EWIMeter metricName={metric.name} metricDesc={metric.desc} quantity={metric.value} segmentColors={metric.segmentColors} lastUpdated={1} />
+              <Grid item xs={0} sm={4} md={4} key={index}>
+                <EWIMeter
+                  metricCompany={metric.company}
+                  metricName={metric.name}
+                  metricDesc={metric.desc}
+                  quantity={metric.value}
+                  segmentColors={metric.segmentColors}
+                  lastUpdated={1}
+                />
               </Grid>
             ))}
           </Grid>
