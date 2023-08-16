@@ -7,34 +7,32 @@ const EWIMeter = ({
   metricName,
   metricDesc,
   quantity,
-  stops = [0, 0.2, 0.6, 1.0],
-  segmentColors = ["firebrick", "gold", "limegreen"],
+  stops,
+  segmentColors = ["#F7C8CE", "#FBEA9F", "#CDEECF"],
   lastUpdated,
+  benchmark,
 }) => {
   return (
     <div className="ewi-meter">
-      <h3 className="ewi-title">
-        {metricCompany} {metricName}
-      </h3>
+      <h3 className="ewi-title">{metricName}</h3>
+      <h3 className="benchmark-title">Industry Benchmark: </h3>
+      <h3 className="benchmark-value">{benchmark}</h3>
       <div
         className="ewi-container"
-        style={{ height: "100px", marginTop: "40px", marginBottom: "15px" }}
+        style={{ height: "120px", marginTop: "40px", marginBottom: "15px" }}
       >
         <ReactSpeedometer
           minValue={0}
-          maxValue={1}
+          maxValue={Math.max.apply(null, stops)}
           value={quantity}
           customSegmentStops={stops}
-          needleColor="steelblue"
+          needleColor="#FF316A"
           segmentColors={segmentColors}
           segments={2}
-          height={170}
-          width={230}
+          height={200}
+          width={350}
         />
       </div>
-      <h3 className="benchmark-title" style={{ marginTop: "-12px" }}>
-        Industry Benchmark
-      </h3>
     </div>
   );
 };

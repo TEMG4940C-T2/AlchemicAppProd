@@ -36,19 +36,62 @@
 
 .early-warning-indicators {
   margin-right: 2%;
+  margin-top: -50px;
+}
+
+.early-warning-indicators-title-contianer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
 .early-warning-indicator-title {
-  margin-top: -50px;
   margin-left: -150px;
+}
+
+.company-select-container {
+  width: 20%;
+  margin-left: 50px;
 }
 
 .ewi-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 100px;
+}
+
+.EWI-container {
+  margin-top: 30px;
+}
+
+.EWIMeter-container {
+  border: 3px solid #ff316a;
+  width: 80%;
+  height: 120%;
+  border-radius: 20px;
 }
 
 .ewi-title {
+  margin-top: 2%;
+  margin-left: 4%;
+  color: #ff316a;
   font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 2%;
+}
+
+.benchmark-title {
+  color: white;
+  font-weight: bolder;
+  font-size: x-large;
+  text-align: center;
+}
+
+.benchmark-value {
+  color: #ff316a;
+  font-weight: bolder;
+  font-size: x-large;
+  text-align: center;
+  margin-bottom: 10%;
 }
