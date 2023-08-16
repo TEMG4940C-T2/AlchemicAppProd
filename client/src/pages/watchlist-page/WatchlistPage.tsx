@@ -85,79 +85,93 @@ interface Broker {
   name: string;
   desc: string;
   value: number;
+  benchmark: number;
   segmentColors?: Array<string>;
+}
+
+const Indicators = [
+  { id: 1, indicator: "ROAA", benchmark: 1.2 },
+  { id: 2, indicator: "ROAE", benchmark: 12.5 },
+  { id: 3, indicator: "CASA Ratio", benchmark: 30 },
+  { id: 4, indicator: "Net Interest Margin", benchmark: 3 },
+  { id: 5, indicator: "Efficiency Ratio", benchmark: 55 },
+];
+
+function calculateValuePercentages(benchmark_value) {
+  return [
+    0,
+    benchmark_value * 0.5,
+    benchmark_value * 1.5,
+    benchmark_value * 2.0,
+  ];
+  // return [0, 0.2, 0.5, 1.0];
 }
 
 const metrics: Record<string, Array<Broker>> = {
   JPM: [
     {
-      company: "Archit",
-      name: "Current Ratio",
+      company: "JP Morgan",
+      name: "ROAA",
       desc: "Current Assets / Current Liabilities",
-      value: 0.8,
+      value: 1.22,
+      benchmark: 1.2,
     },
     {
       company: "JP Morgan",
-      name: "Quick Ratio",
+      name: "ROAE",
       desc: "(Current Assets - Inventory) / Current Liabilities",
-      value: 0.6,
+      value: 15.4,
+      benchmark: 12.5,
     },
     {
-      company: "Bank of America",
-      name: "Debt to Assets Ratio",
+      company: "JP Morgan",
+      name: "CASA Ratio",
       desc: "Total Debt / Total Assets",
-      value: 0.4,
+      value: 0,
+      benchmark: 30,
     },
     {
-      company: "Bank of America",
-      name: "NPL/TL",
+      company: "JP Morgan",
+      name: "Net Interest Margin",
       desc: "Non-Performing Loan / Total Gross Loans",
-      value: 0.2,
-      segmentColors: ["limegreen", "gold", "firebrick"],
+      value: 3.39,
+      benchmark: 3,
     },
     {
-      company: "Bank of America",
-      name: "Debt to EBIT Ratio",
+      company: "JP Morgan",
+      name: "Efficiency Ratio",
       desc: "Total Debt / EBIT",
-      value: 0.1,
-    },
-    {
-      company: "Bank of America",
-      name: "Debt to EBITDA Ratio",
-      desc: "Total Debt / EBITDA",
-      value: 0.9,
+      value: 50,
+      benchmark: 55,
     },
   ],
-  BAC: [
+  MUFG: [
     {
-      company: "Bank of America",
-      name: "Debt to Assets Ratio",
-      desc: "Total Debt / Total Assets",
-      value: 0.4,
+      company: "Mitsubishi UFJ Financial Group",
+      name: "ROAA",
+      desc: "Current Assets / Current Liabilities",
+      value: 0.28,
+      benchmark: 1.2,
     },
     {
-      company: "Bank of America",
-      name: "NPL/TL",
-      desc: "Non-Performing Loan / Total Gross Loans",
-      value: 0.2,
-      segmentColors: ["limegreen", "gold", "firebrick"],
-    },
-    {
-      company: "Bank of America",
-      name: "Debt to EBIT Ratio",
-      desc: "Total Debt / EBIT",
-      value: 0.1,
+      company: "Mitsubishi UFJ Financial Group",
+      name: "ROAE",
+      desc: "(Current Assets - Inventory) / Current Liabilities",
+      value: 5.94,
+      benchmark: 12.5,
     },
   ],
+
   def: [],
 };
 
 const companyList = [
   { id: 1, commonName: "JPMorgan Chase", ticker: "JPM" },
-  { id: 2, commonName: "Bank of America", ticker: "BAC" },
-  { id: 3, commonName: "Citigroup", ticker: "C" },
-  { id: 4, commonName: "Wells Fargo", ticker: "WFC" },
-  { id: 5, commonName: "Goldman Sachs", ticker: "GS" },
+  { id: 2, commonName: " Mitsubishi UFJ Financial Group", ticker: "MUFG" },
+  { id: 3, commonName: "Bank of America", ticker: "BAC" },
+  { id: 4, commonName: "Citigroup", ticker: "C" },
+  { id: 5, commonName: "Wells Fargo", ticker: "WFC" },
+  { id: 6, commonName: "Goldman Sachs", ticker: "GS" },
   // add more rows as needed
 ];
 
@@ -227,25 +241,28 @@ export const WatchlistPage = () => {
           <div className="EWI-container">
             <Grid
               container
-              rowSpacing={4}
-              columnSpacing={1}
-              spacing={{ xs: 3, md: 3 }}
+              rowSpacing={20}
+              columnSpacing={0}
+              spacing={{ xs: 3, md: 2 }}
               columns={{ xs: 3, sm: 4, md: 12 }}
             >
               {Array.from(selectedMetrics).map((metric, index) => (
                 <Grid item xs={0} sm={4} md={4} key={index}>
-                  <EWIMeter
-                    metricCompany={metric.company}
-                    metricName={metric.name}
-                    metricDesc={metric.desc}
-                    quantity={metric.value}
-                    segmentColors={metric.segmentColors}
-                    lastUpdated={1}
-                  />
+                  <div className="EWIMeter-container">
+                    <EWIMeter
+                      metricCompany={metric.company}
+                      metricName={metric.name}
+                      metricDesc={metric.desc}
+                      quantity={metric.value}
+                      segmentColors={metric.segmentColors}
+                      lastUpdated={1}
+                      stops={calculateValuePercentages(metric.benchmark)}
+                      benchmark={metric.benchmark}
+                    />
+                  </div>
                 </Grid>
               ))}
             </Grid>
-            {/* <EWIMeter metricName="Current Ratio" quantity={0.65} lastUpdated={1} /> */}
           </div>
         </div>
       </div>

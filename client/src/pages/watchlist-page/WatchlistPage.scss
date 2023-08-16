@@ -65,11 +65,33 @@
   margin-top: 30px;
 }
 
+.EWIMeter-container {
+  border: 3px solid #ff316a;
+  width: 80%;
+  height: 120%;
+  border-radius: 20px;
+}
+
 .ewi-title {
+  margin-top: 2%;
+  margin-left: 4%;
+  color: #ff316a;
   font-weight: bold;
-  font-size: larger;
+  font-size: 30px;
+  margin-bottom: 2%;
 }
 
 .benchmark-title {
-  color: #f9a83d;
+  color: white;
+  font-weight: bolder;
+  font-size: x-large;
+  text-align: center;
+}
+
+.benchmark-value {
+  color: #ff316a;
+  font-weight: bolder;
+  font-size: x-large;
+  text-align: center;
+  margin-bottom: 10%;
 }
